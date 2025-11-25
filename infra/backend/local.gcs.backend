@@ -1,0 +1,2 @@
+bucket = "bucket_dataascode"
+prefix = "dataascode/local/state.tfstate"
