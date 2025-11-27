@@ -21,7 +21,7 @@ env:
   GCP_ZONE: europe-west1
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
   LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
-  IMAGE_NAME: envent-driven
+  IMAGE_NAME: event-driven
   REPO_ARTIFACTORY: event-driven-gcp
   TARGET_RESSOURCE_TERRAFORM_ARTIFACT_REGISTRY: module.artifactory
 
