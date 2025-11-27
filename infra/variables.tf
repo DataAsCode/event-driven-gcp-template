@@ -63,3 +63,8 @@ variable "topic_name" {
   type        = string
   description = "Pub/Sub topic name."
 }
+
+variable "cloud_run_service_path" {
+  type        = string
+  description = "GCP project name."
+}
