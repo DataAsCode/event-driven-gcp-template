@@ -215,3 +215,5 @@ event-driven-dataascode-key.json
 
 .terraform/
 .terraform.lock.hcl
+
+.infracost/

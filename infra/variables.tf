@@ -43,10 +43,6 @@ variable "eventarc_name" {
   description = "The service account to use to execute the Eventarc triggers"
 }
 
-variable "suffixe_endpoint_target_cloudrun_uri" {
-  type        = string
-  description = "The service account to use to execute the Eventarc triggers"
-}
 
 variable "label" {
   type        = string

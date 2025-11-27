@@ -25,7 +25,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_endpoint_target_cloudrun_uri"></a> [endpoint\_target\_cloudrun\_uri](#input\_endpoint\_target\_cloudrun\_uri) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
+| <a name="input_cloud_run_service_name"></a> [endpoint\_target\_cloudrun\_uri](#input\_endpoint\_target\_cloudrun\_uri) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
 | <a name="input_event_type"></a> [event\_type](#input\_event\_type) | The event type to trigger on (default: Pub/Sub message published) | `string` | `"google.cloud.pubsub.topic.v1.messagePublished"` | no |
 | <a name="input_eventarc_name"></a> [eventarc\_name](#input\_eventarc\_name) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
 | <a name="input_label"></a> [label](#input\_label) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |

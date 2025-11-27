@@ -36,7 +36,7 @@ No resources.
 | <a name="input_name_ressource_cloud_run"></a> [name\_ressource\_cloud\_run](#input\_name\_ressource\_cloud\_run) | Name of the deployed Cloud Run resource. | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | GCP project name. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region where resources will be deployed. | `string` | n/a | yes |
-| <a name="input_suffixe_endpoint_target_cloudrun_uri"></a> [suffixe\_endpoint\_target\_cloudrun\_uri](#input\_suffixe\_endpoint\_target\_cloudrun\_uri) | GCP project name. | `string` | n/a | yes |
+| <a name="input_suffixe_cloud_run_service_name"></a> [suffixe\_endpoint\_target\_cloudrun\_uri](#input\_suffixe\_endpoint\_target\_cloudrun\_uri) | GCP project name. | `string` | n/a | yes |
 | <a name="input_topic_name"></a> [topic\_name](#input\_topic\_name) | Pub/Sub topic name. | `string` | n/a | yes |
 
 ## Outputs

@@ -25,14 +25,19 @@ variable "eventarc_name" {
   description = "The service account to use to execute the Eventarc triggers"
 }
 
-variable "endpoint_target_cloudrun_uri" {
+variable "cloud_run_service_name" {
   type        = string
-  description = "The service account to use to execute the Eventarc triggers"
+  description = "Name of the Cloud Run service to trigger"
+}
+
+variable "cloud_run_service_path" {
+  type        = string
+  description = "Path to the endpoint on the Cloud Run service"
 }
 
 variable "label" {
   type        = string
-  description = "The service account to use to execute the Eventarc triggers"
+  description = "Label for the Eventarc trigger"
 }
 
 variable "source_topic_name" {

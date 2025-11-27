@@ -8,8 +8,10 @@ resource "google_eventarc_trigger" "cloudrun_triggers" {
     value     = var.event_type
   }
   destination {
-    http_endpoint {
-      uri = var.endpoint_target_cloudrun_uri
+    cloud_run_service {
+      service = var.cloud_run_service_name
+      path    = var.cloud_run_service_path
+      region  = var.region
     }
   }
   labels = {
