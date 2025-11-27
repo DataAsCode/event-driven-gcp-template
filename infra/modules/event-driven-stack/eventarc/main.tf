@@ -10,7 +10,6 @@ resource "google_eventarc_trigger" "cloudrun_triggers" {
   destination {
     http_endpoint {
       uri = var.endpoint_target_cloudrun_uri
-      region = var.region
     }
   }
   labels = {
