@@ -85,7 +85,7 @@ jobs:
       # Initialisation of terraform
       - name: Terraform init
         run: |
-          cd infra && terraform init -upgrade -backend-config="dev.gcs.backend"
+          cd infra && terraform init -upgrade -backend-config="backend/dev.gcs.backend"
 
       # Plannification of terraform
       - name: Terraform plan for artifatory
