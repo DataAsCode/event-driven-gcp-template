@@ -13,7 +13,8 @@ from api.utils.config import Settings
 
 settings = Settings()
 
-logfire.configure(token=settings.LOGFIRE_TOKEN, handlers=[logfire.loguru_handler()])
+logfire.configure(token=settings.LOGFIRE_TOKEN)
+logger.configure(handlers=[logfire.loguru_handler()])
 
 router = APIRouter(tags=["ingest"])
 
