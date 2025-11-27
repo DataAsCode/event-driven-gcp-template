@@ -1,2 +1,2 @@
 bucket = "bucket_dataascode"
-prefix = "dataascode/prod/state.tfstate"
+prefix = "event_driven/prod/state.tfstate"
