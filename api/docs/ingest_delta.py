@@ -11,28 +11,17 @@ docs_ingest_event = OpenApiDocs(
             "description": "Event successfully ingested",
             "content": {
                 "application/json": {
-                    "example": {
-                        "status": "success",
-                        "message_data": '{"name": "John", "lastname": "Doe"}'
-                    }
+                    "example": {"status": "success", "message_data": '{"name": "John", "lastname": "Doe"}'}
                 }
             },
         },
         400: {
             "description": "Invalid request - incorrect CloudEvent format or missing data",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Invalid CloudEvent format"}
-                }
-            },
+            "content": {"application/json": {"example": {"detail": "Invalid CloudEvent format"}}},
         },
         500: {
             "description": "Internal error during ingestion or writing to Delta Lake",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Error writing to Delta Lake"}
-                }
-            },
+            "content": {"application/json": {"example": {"detail": "Error writing to Delta Lake"}}},
         },
     },
     openapi_extra={
@@ -48,10 +37,10 @@ docs_ingest_event = OpenApiDocs(
                                     "data": {
                                         "type": "string",
                                         "description": "Base64-encoded data containing the event",
-                                        "example": "eyJuYW1lIjogIkpvaG4iLCAibGFzdG5hbWUiOiAiRG9lIn0="
+                                        "example": "eyJuYW1lIjogIkpvaG4iLCAibGFzdG5hbWUiOiAiRG9lIn0=",
                                     }
                                 },
-                                "required": ["data"]
+                                "required": ["data"],
                             }
                         },
                         "required": ["message"],
@@ -60,13 +49,13 @@ docs_ingest_event = OpenApiDocs(
                         "message": {
                             "data": "eyJuYW1lIjogIkpvaG4iLCAibGFzdG5hbWUiOiAiRG9lIn0=",
                             "messageId": "123456789",
-                            "publishTime": "2025-11-24T10:00:00Z"
+                            "publishTime": "2025-11-24T10:00:00Z",
                         }
                     },
                 }
             },
-            "description": "CloudEvent in Pub/Sub format with base64-encoded data. Headers ce-id and ce-type are also required."
+            "description": "CloudEvent in Pub/Sub format with base64-encoded data. Headers ce-id and ce-type are also required.",
         }
     },
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
 )

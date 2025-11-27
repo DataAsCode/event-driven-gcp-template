@@ -13,10 +13,7 @@ from api.utils.config import Settings
 
 settings = Settings()
 
-logfire.configure(
-    token=settings.LOGFIRE_TOKEN,
-    handlers=[logfire.loguru_handler()]
-)
+logfire.configure(token=settings.LOGFIRE_TOKEN, handlers=[logfire.loguru_handler()])
 
 router = APIRouter(tags=["ingest"])
 
@@ -35,10 +32,7 @@ async def ingest_delta(request: Request):
     logger.info(f"🆔 ID (ce-id): {request.headers.get('ce-id')}")
     logger.info(f"🏷️ Type (ce-type): {request.headers.get('ce-type')}")
 
-    data_to_ingest = EventModelV1(
-        id=request.headers.get('ce-id'),
-        **data_decoded
-    )
+    data_to_ingest = EventModelV1(id=request.headers.get("ce-id"), **data_decoded)
 
     source_data = pa.table(data_to_ingest.model_dump())
     if DeltaTable.is_deltatable(GCS_PATH):
@@ -50,7 +44,7 @@ async def ingest_delta(request: Request):
                 predicate="target.id = source.id",
                 source_alias="source",
                 target_alias="target",
-                merge_schema=True
+                merge_schema=True,
             )
             .when_matched_update_all(except_cols=["id"])
             .when_not_matched_insert_all()
@@ -64,12 +58,7 @@ async def ingest_delta(request: Request):
         logger.info(f"⚙️ Table {GCS_PATH} optimize")
         return {"status": "success", "message_data": data_decoded}
 
-
     write_deltalake(GCS_PATH, source_data)
     logger.info(f"✨ Table {GCS_PATH} create")
 
     return {"status": "success", "message_data": data_decoded}
-
-
-
-

@@ -22,7 +22,7 @@ vim terraform.tfvars
 terraform plan -var-file="environments/dev.tfvars"
 terraform apply -var-file="environments/dev.tfvars"
 
-# Production Environment  
+# Production Environment
 terraform plan -var-file="environments/prod.tfvars"
 terraform apply -var-file="environments/prod.tfvars"
 
@@ -209,7 +209,7 @@ export SECRET_VALUE=$(gcloud secrets versions access latest --secret="dbt-servic
 # Create alerts based on module outputs
 resource "google_monitoring_alert_policy" "cloudrun_alerts" {
   display_name = "${var.environment}-fleet-api-alerts"
-  
+
   conditions {
     display_name = "High Error Rate"
     condition_threshold {

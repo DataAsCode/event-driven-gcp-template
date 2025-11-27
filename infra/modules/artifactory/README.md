@@ -9,7 +9,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 6.49.1 |
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
 
@@ -19,7 +19,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google_artifact_registry_repository.repo-backend-dataascode](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository) | resource |
+| [google_artifact_registry_repository.repo-backend-dataascode-event-driven](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository) | resource |
 
 ## Inputs
 
@@ -32,5 +32,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_artifactory_repository_id"></a> [artifactory\_repository\_id](#output\_artifactory\_repository\_id) | Noms des topics créés |
+| <a name="output_artifactory_repository_id"></a> [artifactory\_repository\_id](#output\_artifactory\_repository\_id) | Noms de l'artifactory créés |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

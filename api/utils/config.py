@@ -3,6 +3,7 @@ from pydantic_settings import BaseSettings
 
 load_dotenv()
 
+
 class Settings(BaseSettings):
     LOGFIRE_TOKEN: str
     BUCKET_NAME: str

@@ -58,4 +58,3 @@ variable "suffixe_endpoint_target_cloudrun_uri" {
   type        = string
   description = "GCP project name."
 }
-

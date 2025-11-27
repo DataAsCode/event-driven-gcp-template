@@ -1,7 +1,7 @@
 resource "google_eventarc_trigger" "cloudrun_triggers" {
-  name     = var.eventarc_name
-  location = var.region
-  project  = var.project
+  name            = var.eventarc_name
+  location        = var.region
+  project         = var.project
   service_account = var.service_account_email
   matching_criteria {
     attribute = "type"
