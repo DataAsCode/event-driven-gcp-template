@@ -1,6 +1,7 @@
 import base64
 from pathlib import Path
 
+import logfire
 import pyarrow as pa
 from deltalake import DeltaTable, write_deltalake
 from fastapi import APIRouter, Request
@@ -8,10 +9,20 @@ from loguru import logger
 
 from api.docs.ingest_delta import docs_ingest_event
 from api.models.events import EventModelV1
-from api.utils.config import Settings
+from api.utils.config import settings
+from api.utils.secrets import get_secret_from_gcp
 
-settings = Settings()
 router = APIRouter(tags=["ingest"])
+
+# Récupération du token Logfire depuis Google Secret Manager
+logfire_token = get_secret_from_gcp(
+    project_id=settings.GCP_PROJECT_ID,
+    secret_name=settings.LOGFIRE_SECRET_NAME,
+)
+
+# Configuration de Logfire avec le token récupéré
+logfire.configure(token=logfire_token)
+logger.configure(handlers=[logfire.loguru_handler()])
 
 PATH_TO_FOLDER_JINJA_SQL = Path(__file__).parent / "sql"
 GCS_PATH = f"gs://{settings.BUCKET_NAME}/ingest_table"
