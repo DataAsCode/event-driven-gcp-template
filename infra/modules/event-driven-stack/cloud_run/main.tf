@@ -13,11 +13,6 @@ resource "google_cloud_run_v2_service" "cloudrun_dataascode_backend" {
       ports {
         container_port = var.container_port
       }
-
-      volume_mounts {
-        name       = "cloudrun-service-key-volume"
-        mount_path = "/secrets"
-      }
     }
   }
 }
