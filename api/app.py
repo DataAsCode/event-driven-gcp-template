@@ -14,6 +14,7 @@ Event-Driven GCP API 🚀
 **Delta Lake Storage**: Data persistence in Delta Lake tables on GCS
 **Automatic UPSERT**: Intelligent merge of events based on ID
 **Automatic Optimization**: Table compaction and cleanup after each ingestion
+**Observability**: Structured logging with Logfire and Loguru
 
 ## Architecture
 
