@@ -10,13 +10,6 @@ resource "google_service_account" "cloudrun_runtime" {
   description  = "Runtime service account for Cloud Run services"
 }
 
-resource "google_service_account" "workflows_execution" {
-  account_id   = "workflows-exec-${var.environment}"
-  display_name = "Workflows Execution Service Account - ${var.environment}"
-  description  = "Service account for workflows execution with minimal permissions"
-}
-
-
 # Eventarc specific IAM bindings with least privilege
 resource "google_project_iam_member" "eventarc_event_receiver" {
   project = var.project
