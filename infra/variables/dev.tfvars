@@ -15,4 +15,4 @@ source_topic_name = "event-ingestion-dev"
 
 # Eventarc Configuration
 eventarc_name = "event-trigger-dev"
-label         = "event-driven-dev"
+label         = "event-driven-dev" 
