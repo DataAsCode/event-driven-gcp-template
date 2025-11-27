@@ -1,7 +1,6 @@
 import base64
 from pathlib import Path
 
-import logfire
 import pyarrow as pa
 from deltalake import DeltaTable, write_deltalake
 from fastapi import APIRouter, Request
@@ -12,10 +11,6 @@ from api.models.events import EventModelV1
 from api.utils.config import Settings
 
 settings = Settings()
-
-logfire.configure(token=settings.LOGFIRE_TOKEN)
-logger.configure(handlers=[logfire.loguru_handler()])
-
 router = APIRouter(tags=["ingest"])
 
 PATH_TO_FOLDER_JINJA_SQL = Path(__file__).parent / "sql"
