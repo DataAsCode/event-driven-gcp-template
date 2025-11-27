@@ -54,7 +54,7 @@ variable "eventarc_name" {
   description = "GCP project name."
 }
 
-variable "endpoint_target_cloudrun_uri" {
+variable "suffixe_endpoint_target_cloudrun_uri" {
   type        = string
   description = "GCP project name."
 }

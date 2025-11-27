@@ -23,7 +23,6 @@ variable "google_service_account_cloudrun_runtime_email" {
   description = "Email of the Google service account used for Cloud Run service execution."
 }
 
-
 variable "container_port" {
   type        = number
   description = "Port on which the Cloud Run container listens for HTTP requests."
@@ -39,13 +38,12 @@ variable "artifactory_repository_id" {
   description = "Artifact Registry repository identifier where the Docker image is stored."
 }
 
-
 variable "eventarc_name" {
   type        = string
   description = "The service account to use to execute the Eventarc triggers"
 }
 
-variable "endpoint_target_cloudrun_uri" {
+variable "suffixe_endpoint_target_cloudrun_uri" {
   type        = string
   description = "The service account to use to execute the Eventarc triggers"
 }

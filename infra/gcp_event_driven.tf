@@ -17,6 +17,6 @@ module "gcp_event_driven" {
   container_port                 = var.container_port
   topic_name                     = var.topic_name
   label = var.label
-  endpoint_target_cloudrun_uri = var.endpoint_target_cloudrun_uri
+  suffixe_endpoint_target_cloudrun_uri = var.suffixe_endpoint_target_cloudrun_uri
   eventarc_name = var.eventarc_name
 }

@@ -92,7 +92,7 @@ jobs:
         run: |
           cd infra && terraform plan \
           -target=${{ env.TARGET_RESSOURCE_TERRAFORM_ARTIFACT_REGISTRY }} \
-          -var-file="environments/dev.tfvars" \
+          -var-file="variables/dev.tfvars" \
           -var "github_sha=${GITHUB_SHA::7}" \
           -var "environment=dev" \
           -var "artifactory_repository_id=${{ env.REPO_ARTIFACTORY }}" \
@@ -105,7 +105,7 @@ jobs:
           cd infra && terraform apply \
           --auto-approve \
           -target=${{ env.TARGET_RESSOURCE_TERRAFORM_ARTIFACT_REGISTRY }} \
-          -var-file="environments/dev.tfvars" \
+          -var-file="variables/dev.tfvars" \
           -var "github_sha=${GITHUB_SHA::7}" \
           -var "environment=dev" \
           -var "artifactory_repository_id=${{ env.REPO_ARTIFACTORY }}" \
@@ -115,23 +115,32 @@ jobs:
       # Build the artifact
       - name: Docker Build
         run: |
-          docker build -f docker/Dockerfile.api.dev . -t ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} --platform linux/amd64
+          docker build . -t ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} \
+          --platform linux/amd64
 
-      # Tag the artifact
+      # Tag the artifact avec plusieurs tags
       - name: Docker Tag
         run: |
-          docker tag ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} ${{ env.GCP_ZONE}}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_ARTIFACTORY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
+          DATE_TAG=$(date +%Y%m%d-%H%M%S)
+          IMAGE_BASE=${{ env.GCP_ZONE}}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_ARTIFACTORY }}/${{ env.IMAGE_NAME }}
+          docker tag ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} ${IMAGE_BASE}:${GITHUB_SHA::7}
+          docker tag ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} ${IMAGE_BASE}:${DATE_TAG}
+          docker tag ${{ env.IMAGE_NAME }}:${GITHUB_SHA::7} ${IMAGE_BASE}:latest
 
-      # Publish the artifact
+      # Publish the artifact avec tous les tags
       - name: Docker Publish
         run: |
-          docker push ${{ env.GCP_ZONE}}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_ARTIFACTORY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
+          DATE_TAG=$(date +%Y%m%d-%H%M%S)
+          IMAGE_BASE=${{ env.GCP_ZONE}}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_ARTIFACTORY }}/${{ env.IMAGE_NAME }}
+          docker push ${IMAGE_BASE}:${GITHUB_SHA::7}
+          docker push ${IMAGE_BASE}:${DATE_TAG}
+          docker push ${IMAGE_BASE}:latest
 
       # Planification of terraform
       - name: Terraform plan
         run: |
           cd infra && terraform plan \
-          -var-file="environments/dev.tfvars" \
+          -var-file="variables/dev.tfvars" \
           -var "github_sha=${GITHUB_SHA::7}" \
           -var "environment=dev" \
           -var "artifactory_repository_id=${{ env.REPO_ARTIFACTORY }}" \
@@ -142,7 +151,7 @@ jobs:
       - name: Terraform apply
         run: |
           cd infra && terraform apply --auto-approve \
-          -var-file="environments/dev.tfvars" \
+          -var-file="variables/dev.tfvars" \
           -var "github_sha=${GITHUB_SHA::7}" \
           -var "environment=dev" \
           -var "artifactory_repository_id=${{ env.REPO_ARTIFACTORY }}" \

@@ -32,7 +32,7 @@ module "eventarc" {
     label=var.label
     source_topic_name=module.pubsub.pubsub_topic_name
     eventarc_name=var.eventarc_name
-    endpoint_target_cloudrun_uri=module.cloud_run.cloud_run_service_url
+    endpoint_target_cloudrun_uri="${module.cloud_run.cloud_run_service_url}/${var.suffixe_endpoint_target_cloudrun_uri}"
 
     depends_on = [module.service_accounts, module.pubsub, module.cloud_run]
 }
