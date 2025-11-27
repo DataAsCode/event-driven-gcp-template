@@ -25,10 +25,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cloud_run_service_name"></a> [endpoint\_target\_cloudrun\_uri](#input\_endpoint\_target\_cloudrun\_uri) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
+| <a name="input_cloud_run_service_name"></a> [cloud\_run\_service\_name](#input\_cloud\_run\_service\_name) | Name of the Cloud Run service to trigger | `string` | n/a | yes |
+| <a name="input_cloud_run_service_path"></a> [cloud\_run\_service\_path](#input\_cloud\_run\_service\_path) | Path to the endpoint on the Cloud Run service | `string` | n/a | yes |
 | <a name="input_event_type"></a> [event\_type](#input\_event\_type) | The event type to trigger on (default: Pub/Sub message published) | `string` | `"google.cloud.pubsub.topic.v1.messagePublished"` | no |
 | <a name="input_eventarc_name"></a> [eventarc\_name](#input\_eventarc\_name) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
-| <a name="input_label"></a> [label](#input\_label) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
+| <a name="input_label"></a> [label](#input\_label) | Label for the Eventarc trigger | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | The GCP project ID where resources will be created | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region where GCP services will be deployed | `string` | `"europe-west9"` | no |
 | <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |

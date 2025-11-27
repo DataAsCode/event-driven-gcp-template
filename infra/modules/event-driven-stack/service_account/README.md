@@ -26,7 +26,6 @@ No modules.
 | [google_project_iam_member.eventarc_run_invoker](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_service_account.cloudrun_runtime](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 | [google_service_account.eventarc_triggers](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
-| [google_service_account.workflows_execution](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 
 ## Inputs
 
@@ -41,14 +40,6 @@ No modules.
 |------|-------------|
 | <a name="output_google_service_account_cloudrun_runtime_email"></a> [google\_service\_account\_cloudrun\_runtime\_email](#output\_google\_service\_account\_cloudrun\_runtime\_email) | Email of the Cloud Run runtime service account |
 | <a name="output_google_service_account_cloudrun_runtime_name"></a> [google\_service\_account\_cloudrun\_runtime\_name](#output\_google\_service\_account\_cloudrun\_runtime\_name) | Name of the Cloud Run runtime service account |
-| <a name="output_google_service_account_dbt_service_email"></a> [google\_service\_account\_dbt\_service\_email](#output\_google\_service\_account\_dbt\_service\_email) | Email of the dbt service account |
-| <a name="output_google_service_account_dbt_service_name"></a> [google\_service\_account\_dbt\_service\_name](#output\_google\_service\_account\_dbt\_service\_name) | Name of the dbt service account |
 | <a name="output_google_service_account_eventarc_triggers_email"></a> [google\_service\_account\_eventarc\_triggers\_email](#output\_google\_service\_account\_eventarc\_triggers\_email) | Email of the Eventarc triggers service account |
 | <a name="output_google_service_account_eventarc_triggers_name"></a> [google\_service\_account\_eventarc\_triggers\_name](#output\_google\_service\_account\_eventarc\_triggers\_name) | Name of the Eventarc triggers service account |
-| <a name="output_google_service_account_gcs_operations_email"></a> [google\_service\_account\_gcs\_operations\_email](#output\_google\_service\_account\_gcs\_operations\_email) | Email of the GCS operations service account |
-| <a name="output_google_service_account_gcs_operations_name"></a> [google\_service\_account\_gcs\_operations\_name](#output\_google\_service\_account\_gcs\_operations\_name) | Name of the GCS operations service account |
-| <a name="output_google_service_account_scheduler_email"></a> [google\_service\_account\_scheduler\_email](#output\_google\_service\_account\_scheduler\_email) | Email of the Cloud Scheduler service account |
-| <a name="output_google_service_account_scheduler_name"></a> [google\_service\_account\_scheduler\_name](#output\_google\_service\_account\_scheduler\_name) | Name of the Cloud Scheduler service account |
-| <a name="output_google_service_account_workflows_execution_email"></a> [google\_service\_account\_workflows\_execution\_email](#output\_google\_service\_account\_workflows\_execution\_email) | Email of the Workflows execution service account |
-| <a name="output_google_service_account_workflows_execution_name"></a> [google\_service\_account\_workflows\_execution\_name](#output\_google\_service\_account\_workflows\_execution\_name) | Name of the Workflows execution service account |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

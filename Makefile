@@ -57,7 +57,7 @@ tf_plan_local:
 .PHONY: generate_key_iam
 generate_key_iam:
 	bash deploy_service_account_CICD.sh
-	
+
 
 .PHONY: help
 help:

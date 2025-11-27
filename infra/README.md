@@ -5,7 +5,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 6.31.1 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 7.12.0 |
 
 ## Providers
 
@@ -27,6 +27,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_artifactory_repository_id"></a> [artifactory\_repository\_id](#input\_artifactory\_repository\_id) | Artifact Registry repository identifier where the Docker image is stored. | `string` | n/a | yes |
+| <a name="input_cloud_run_service_path"></a> [cloud\_run\_service\_path](#input\_cloud\_run\_service\_path) | GCP project name. | `string` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | Port on which the Cloud Run container listens for HTTP requests. | `number` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Target environment (e.g., dev, staging, prod). | `string` | n/a | yes |
 | <a name="input_eventarc_name"></a> [eventarc\_name](#input\_eventarc\_name) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
@@ -38,7 +39,6 @@ No resources.
 | <a name="input_project"></a> [project](#input\_project) | GCP project name. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region where resources will be deployed. | `string` | n/a | yes |
 | <a name="input_source_topic_name"></a> [source\_topic\_name](#input\_source\_topic\_name) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
-| <a name="input_suffixe_cloud_run_service_name"></a> [suffixe\_endpoint\_target\_cloudrun\_uri](#input\_suffixe\_endpoint\_target\_cloudrun\_uri) | The service account to use to execute the Eventarc triggers | `string` | n/a | yes |
 | <a name="input_topic_name"></a> [topic\_name](#input\_topic\_name) | Pub/Sub topic name. | `string` | n/a | yes |
 
 ## Outputs

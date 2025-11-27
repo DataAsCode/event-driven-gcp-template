@@ -18,5 +18,5 @@ module "gcp_event_driven" {
   topic_name                = var.topic_name
   label                     = var.label
   eventarc_name             = var.eventarc_name
-  cloud_run_service_path = var.cloud_run_service_path
+  cloud_run_service_path    = var.cloud_run_service_path
 }

@@ -21,4 +21,3 @@ def get_secret_from_gcp(project_id: str, secret_name: str, version: str = "lates
 
     response = client.access_secret_version(request={"name": name})
     return response.payload.data.decode("UTF-8")
-
