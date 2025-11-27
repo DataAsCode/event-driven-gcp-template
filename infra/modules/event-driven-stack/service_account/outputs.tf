@@ -1,13 +1,3 @@
-output "google_service_account_dbt_service_email" {
-  description = "Email of the dbt service account"
-  value       = google_service_account.dbt_service.email
-}
-
-output "google_service_account_dbt_service_name" {
-  description = "Name of the dbt service account"
-  value       = google_service_account.dbt_service.name
-}
-
 output "google_service_account_eventarc_triggers_email" {
   description = "Email of the Eventarc triggers service account"
   value       = google_service_account.eventarc_triggers.email
@@ -38,26 +28,4 @@ output "google_service_account_workflows_execution_email" {
 output "google_service_account_workflows_execution_name" {
   description = "Name of the Workflows execution service account"
   value       = google_service_account.workflows_execution.name
-}
-
-# Cloud Scheduler service account outputs
-output "google_service_account_scheduler_email" {
-  description = "Email of the Cloud Scheduler service account"
-  value       = google_service_account.scheduler.email
-}
-
-output "google_service_account_scheduler_name" {
-  description = "Name of the Cloud Scheduler service account"
-  value       = google_service_account.scheduler.name
-}
-
-# GCS operations service account outputs
-output "google_service_account_gcs_operations_email" {
-  description = "Email of the GCS operations service account"
-  value       = google_service_account.gcs_operations.email
-}
-
-output "google_service_account_gcs_operations_name" {
-  description = "Name of the GCS operations service account"
-  value       = google_service_account.gcs_operations.name
 }

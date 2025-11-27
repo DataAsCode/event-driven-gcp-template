@@ -1,7 +1,7 @@
 module "service_account" {
   source      = "./service_account"
-  project     = project
-  environment = environment
+  project     = var.project
+  environment = var.environment
 }
 
 module "pubsub" {
@@ -16,23 +16,23 @@ module "cloud_run" {
   environment                                   = var.environment
   name_ressource_cloud_run                      = var.name_ressource_cloud_run
   name_image_docker                             = var.name_image_docker
-  google_service_account_cloudrun_runtime_email = module.service_accounts.google_service_account_cloudrun_runtime_email
+  google_service_account_cloudrun_runtime_email = module.service_account.google_service_account_cloudrun_runtime_email
   container_port                                = var.container_port
   github_sha                                    = var.github_sha
   artifactory_repository_id                     = var.artifactory_repository_id
 
-  depends_on = [module.service_accounts]
+  depends_on = [module.service_account]
 }
 
 module "eventarc" {
   source                       = "./eventarc"
   project                      = var.project
   region                       = var.region
-  service_account_email        = module.service_accounts.google_service_account_eventarc_triggers_email
+  service_account_email        = module.service_account.google_service_account_eventarc_triggers_email
   label                        = var.label
   source_topic_name            = module.pubsub.pubsub_topic_name
   eventarc_name                = var.eventarc_name
   endpoint_target_cloudrun_uri = "${module.cloud_run.cloud_run_service_url}/${var.suffixe_endpoint_target_cloudrun_uri}"
 
-  depends_on = [module.service_accounts, module.pubsub, module.cloud_run]
+  depends_on = [module.service_account, module.pubsub, module.cloud_run]
 }
