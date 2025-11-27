@@ -6,8 +6,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     LOGFIRE_TOKEN: str
-    BUCKET_NAME: str
-
+    BUCKET_NAME: str = "event-driven"
     API_V1_STR: str = "/api/v1"
 
 

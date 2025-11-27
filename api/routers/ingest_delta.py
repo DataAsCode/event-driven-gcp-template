@@ -18,9 +18,8 @@ logger.configure(handlers=[logfire.loguru_handler()])
 
 router = APIRouter(tags=["ingest"])
 
-BUCKET_NAME = "event-driven"
 PATH_TO_FOLDER_JINJA_SQL = Path(__file__).parent / "sql"
-GCS_PATH = f"gs://{BUCKET_NAME}/ingest_table"
+GCS_PATH = f"gs://{settings.BUCKET_NAME}/ingest_table"
 
 
 @router.post("/ingest_event", **docs_ingest_event.model_dump())
