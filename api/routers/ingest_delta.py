@@ -1,4 +1,5 @@
 import base64
+import json
 from pathlib import Path
 
 import logfire
@@ -32,7 +33,8 @@ GCS_PATH = f"gs://{settings.BUCKET_NAME}/ingest_table"
 async def ingest_delta(request: Request):
     cloudevent = await request.json()
     pubsub_data_base64 = cloudevent.get("message").get("data")
-    data_decoded = base64.b64decode(pubsub_data_base64).decode("utf-8")
+    data_decoded_str = base64.b64decode(pubsub_data_base64).decode("utf-8")
+    data_decoded = json.loads(data_decoded_str)
 
     logger.info(f"🗓️ CloudEvent Pub/Sub decoded: {data_decoded}")
     logger.info(f"🆔 ID (ce-id): {request.headers.get('ce-id')}")
@@ -62,9 +64,9 @@ async def ingest_delta(request: Request):
         dt.vacuum(retention_hours=0, enforce_retention_duration=False, dry_run=False)
 
         logger.info(f"⚙️ Table {GCS_PATH} optimize")
-        return {"status": "success", "message_data": data_decoded}
+        return {"status": "success", "message_data": data_decoded_str}
 
     write_deltalake(GCS_PATH, source_data)
     logger.info(f"✨ Table {GCS_PATH} create")
 
-    return {"status": "success", "message_data": data_decoded}
+    return {"status": "success", "message_data": data_decoded_str}
