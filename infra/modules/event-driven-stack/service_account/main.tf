@@ -42,3 +42,10 @@ resource "google_project_iam_member" "cloudrun_bigquery_jobuser" {
   role    = "roles/bigquery.jobUser"
   member  = "serviceAccount:${google_service_account.cloudrun_runtime.email}"
 }
+
+# GCS permissions pour lecture et écriture des objets
+resource "google_project_iam_member" "cloudrun_storage_object_admin" {
+  project = var.project
+  role    = "roles/storage.objectAdmin"
+  member  = "serviceAccount:${google_service_account.cloudrun_runtime.email}"
+}
