@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import json
 from pathlib import Path
 
@@ -29,6 +30,17 @@ PATH_TO_FOLDER_JINJA_SQL = Path(__file__).parent / "sql"
 GCS_PATH = f"gs://{settings.BUCKET_NAME}/ingest_table"
 
 
+def generate_unique_id(data: dict) -> str:
+    """
+    Génère un ID unique et déterministe basé sur le contenu de l'événement.
+    Le même contenu produit toujours le même ID, évitant les doublons.
+    """
+    # Trie les clés pour avoir un hash cohérent
+    sorted_data = json.dumps(data, sort_keys=True)
+    # Génère un hash SHA256 du contenu
+    return hashlib.sha256(sorted_data.encode()).hexdigest()
+
+
 @router.post("/ingest_event", **docs_ingest_event.model_dump())
 async def ingest_delta(request: Request):
     cloudevent = await request.json()
@@ -36,11 +48,15 @@ async def ingest_delta(request: Request):
     data_decoded_str = base64.b64decode(pubsub_data_base64).decode("utf-8")
     data_decoded = json.loads(data_decoded_str)
 
+    # Génération d'un ID unique basé sur le contenu pour éviter les doublons
+    unique_id = generate_unique_id(data_decoded)
+
     logger.info(f"🗓️ CloudEvent Pub/Sub decoded: {data_decoded}")
-    logger.info(f"🆔 ID (ce-id): {request.headers.get('ce-id')}")
+    logger.info(f"🆔 ID unique généré: {unique_id}")
+    logger.info(f"🔖 CE-ID original: {request.headers.get('ce-id')}")
     logger.info(f"🏷️ Type (ce-type): {request.headers.get('ce-type')}")
 
-    data_to_ingest = EventModelV1(id=request.headers.get("ce-id"), **data_decoded)
+    data_to_ingest = EventModelV1(id=unique_id, **data_decoded)
     source_data = pl.DataFrame(data_to_ingest.model_dump(by_alias=True))
 
     if DeltaTable.is_deltatable(GCS_PATH):
