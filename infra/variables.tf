@@ -44,10 +44,6 @@ variable "label" {
   description = "The service account to use to execute the Eventarc triggers"
 }
 
-variable "source_topic_name" {
-  type        = string
-  description = "The service account to use to execute the Eventarc triggers"
-}
 
 variable "name_ressource_cloud_run" {
   type        = string
