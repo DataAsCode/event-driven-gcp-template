@@ -42,7 +42,8 @@ async def ingest_delta(request: Request):
 
     data_to_ingest = EventModelV1(id=request.headers.get("ce-id"), **data_decoded)
 
-    source_data = pa.table(data_to_ingest.model_dump())
+    # PyArrow attend une liste de dictionnaires ou un dict avec des listes comme valeurs
+    source_data = pa.table([data_to_ingest.model_dump()])
     if DeltaTable.is_deltatable(GCS_PATH):
         dt = DeltaTable(GCS_PATH)
 
