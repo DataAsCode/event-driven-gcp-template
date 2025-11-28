@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 import logfire
-import pyarrow as pa
+import polars as pl
 from deltalake import DeltaTable, write_deltalake
 from fastapi import APIRouter, Request
 from loguru import logger
@@ -41,9 +41,8 @@ async def ingest_delta(request: Request):
     logger.info(f"🏷️ Type (ce-type): {request.headers.get('ce-type')}")
 
     data_to_ingest = EventModelV1(id=request.headers.get("ce-id"), **data_decoded)
+    source_data = pl.DataFrame(data_to_ingest.model_dump(by_alias=True))
 
-    # PyArrow attend une liste de dictionnaires ou un dict avec des listes comme valeurs
-    source_data = pa.table([data_to_ingest.model_dump()])
     if DeltaTable.is_deltatable(GCS_PATH):
         dt = DeltaTable(GCS_PATH)
 
