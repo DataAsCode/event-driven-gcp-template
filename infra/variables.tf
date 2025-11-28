@@ -18,11 +18,6 @@ variable "name_image_docker" {
   description = "Name of the Docker image generated and stored in Artifact Registry."
 }
 
-variable "google_service_account_cloudrun_runtime_email" {
-  type        = string
-  description = "Email of the Google service account used for Cloud Run service execution."
-}
-
 variable "container_port" {
   type        = number
   description = "Port on which the Cloud Run container listens for HTTP requests."
