@@ -16,13 +16,11 @@ from api.utils.secrets import get_secret_from_gcp
 
 router = APIRouter(tags=["ingest"])
 
-# Récupération du token Logfire depuis Google Secret Manager
 logfire_token = get_secret_from_gcp(
     project_id=settings.GCP_PROJECT_ID,
     secret_name=settings.LOGFIRE_SECRET_NAME,
 )
 
-# Configuration de Logfire avec le token récupéré
 logfire.configure(token=logfire_token)
 logger.configure(handlers=[logfire.loguru_handler()])
 
@@ -35,9 +33,7 @@ def generate_unique_id(data: dict) -> str:
     Génère un ID unique et déterministe basé sur le contenu de l'événement.
     Le même contenu produit toujours le même ID, évitant les doublons.
     """
-    # Trie les clés pour avoir un hash cohérent
     sorted_data = json.dumps(data, sort_keys=True)
-    # Génère un hash SHA256 du contenu
     return hashlib.sha256(sorted_data.encode()).hexdigest()
 
 
@@ -48,7 +44,6 @@ async def ingest_delta(request: Request):
     data_decoded_str = base64.b64decode(pubsub_data_base64).decode("utf-8")
     data_decoded = json.loads(data_decoded_str)
 
-    # Génération d'un ID unique basé sur le contenu pour éviter les doublons
     unique_id = generate_unique_id(data_decoded)
 
     logger.info(f"🗓️ CloudEvent Pub/Sub decoded: {data_decoded}")
