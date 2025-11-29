@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://jojo.github.io/event-driven-gcp/modules/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../architecture/">
       
       
       
@@ -286,6 +286,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -379,6 +406,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="ingest_delta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api.routers.ingest_delta.generate_unique_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_unique_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -609,6 +653,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ingest_delta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api.routers.ingest_delta.generate_unique_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_unique_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -829,6 +890,42 @@
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="api.routers.ingest_delta.generate_unique_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_unique_id</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code>
+
+<a href="#api.routers.ingest_delta.generate_unique_id" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Génère un ID unique et déterministe basé sur le contenu de l'événement.
+Le même contenu produit toujours le même ID, évitant les doublons.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>api/routers/ingest_delta.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_unique_id</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Génère un ID unique et déterministe basé sur le contenu de l&#39;événement.</span>
+<span class="sd">    Le même contenu produit toujours le même ID, évitant les doublons.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sorted_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">sorted_data</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 
